@@ -1,0 +1,1660 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oficina Kaizen Tattoo — Arujá, SP</title>
+<meta name="description" content="Estúdio de tatuagem e piercing em Arujá, SP. Filosofia da melhoria contínua aplicada à arte da tinta na pele.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Shippori+Mincho:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black: #0a0706;
+    --ink: #141010;
+    --paper: #f4ede2;
+    --paper-dim: #d8cfc0;
+    --red: #c8191a;
+    --red-deep: #8b0f10;
+    --red-glow: #e84a4a;
+    --gold: #c9a961;
+    --mute: #6b5f52;
+    --serif: 'Shippori Mincho', 'Cormorant Garamond', serif;
+    --display: 'Cormorant Garamond', serif;
+    --sans: 'Zen Kaku Gothic New', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--paper);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* Grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(200, 25, 26, 0.04) 0%, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(200, 25, 26, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+    opacity: 0.08;
+    pointer-events: none;
+    z-index: 2;
+    mix-blend-mode: overlay;
+  }
+
+  /* ========== NAV ========== */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.4s ease;
+    background: transparent;
+  }
+
+  nav.scrolled {
+    background: rgba(10, 7, 6, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200, 25, 26, 0.2);
+    padding: 1rem 3rem;
+  }
+
+  .nav-brand {
+    font-family: var(--display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: var(--paper);
+    text-transform: uppercase;
+  }
+
+  .nav-brand span {
+    color: var(--red);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--paper);
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 400;
+    position: relative;
+    padding: 4px 0;
+    transition: color 0.3s;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--red);
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover { color: var(--red-glow); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--paper);
+    cursor: pointer;
+    padding: 8px;
+  }
+
+  .nav-toggle svg { width: 24px; height: 24px; }
+
+  /* ========== HERO ========== */
+  .hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0 2rem;
+  }
+
+  .hero-kanji {
+    position: absolute;
+    font-family: var(--serif);
+    font-size: clamp(20rem, 50vw, 45rem);
+    color: var(--red);
+    opacity: 0.08;
+    font-weight: 700;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 0.85;
+    letter-spacing: -0.05em;
+    user-select: none;
+    z-index: 1;
+  }
+
+  .hero-enso {
+    position: absolute;
+    right: -8%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: clamp(400px, 60vw, 800px);
+    height: clamp(400px, 60vw, 800px);
+    border: 3px solid var(--red);
+    border-radius: 50%;
+    border-top-color: transparent;
+    border-right-color: rgba(200, 25, 26, 0.6);
+    opacity: 0.15;
+    animation: rotate 60s linear infinite;
+    z-index: 1;
+  }
+
+  @keyframes rotate {
+    from { transform: translateY(-50%) rotate(0deg); }
+    to { transform: translateY(-50%) rotate(360deg); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 1100px;
+    width: 100%;
+    text-align: left;
+  }
+
+  .hero-overline {
+    font-family: var(--serif);
+    font-size: 0.85rem;
+    letter-spacing: 0.5em;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    opacity: 0;
+    animation: fadeUp 1s 0.3s forwards;
+  }
+
+  .hero-overline::before {
+    content: '';
+    width: 60px;
+    height: 1px;
+    background: var(--red);
+  }
+
+  .hero-title {
+    font-family: var(--display);
+    font-size: clamp(3.5rem, 10vw, 8.5rem);
+    font-weight: 500;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 1s 0.5s forwards;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--red);
+    font-weight: 400;
+  }
+
+  .hero-title .kanji-inline {
+    font-family: var(--serif);
+    color: var(--red);
+    font-size: 0.7em;
+    margin: 0 0.15em;
+  }
+
+  .hero-sub {
+    font-family: var(--serif);
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    font-style: italic;
+    color: var(--paper-dim);
+    max-width: 500px;
+    margin-bottom: 3rem;
+    line-height: 1.7;
+    opacity: 0;
+    animation: fadeUp 1s 0.7s forwards;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 1s 0.9s forwards;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1.1rem 2.2rem;
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary {
+    background: var(--red);
+    color: var(--paper);
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--red-deep);
+    transform: translateX(-100%);
+    transition: transform 0.4s ease;
+  }
+
+  .btn-primary:hover::before { transform: translateX(0); }
+  .btn-primary span { position: relative; z-index: 1; }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--paper);
+    border: 1px solid rgba(244, 237, 226, 0.3);
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--paper);
+    background: rgba(244, 237, 226, 0.05);
+  }
+
+  .btn svg { width: 18px; height: 18px; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.8rem;
+    color: var(--paper-dim);
+    letter-spacing: 0.3em;
+    margin-right: -0.3em;
+    z-index: 10;
+    opacity: 0;
+    animation: fadeUp 1s 1.3s forwards;
+  }
+
+  .scroll-hint::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 40px;
+    background: var(--red);
+    margin: 1rem auto 0;
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { transform: scaleY(0.3); opacity: 0.3; transform-origin: top; }
+    50% { transform: scaleY(1); opacity: 1; transform-origin: top; }
+  }
+
+  /* ========== SECTIONS ========== */
+  section {
+    position: relative;
+    z-index: 5;
+    padding: 8rem 3rem;
+  }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-family: var(--serif);
+    font-size: 0.8rem;
+    letter-spacing: 0.4em;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-label::before {
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: var(--red);
+  }
+
+  .section-title {
+    font-family: var(--display);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 3rem;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--red);
+    font-weight: 400;
+  }
+
+  /* ========== SOBRE ========== */
+  .about {
+    background: var(--ink);
+    border-top: 1px solid rgba(200, 25, 26, 0.15);
+    border-bottom: 1px solid rgba(200, 25, 26, 0.15);
+  }
+
+  .about-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .about-text p {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--paper-dim);
+    margin-bottom: 1.5rem;
+  }
+
+  .about-text p:first-of-type::first-letter {
+    font-family: var(--display);
+    font-size: 4.5rem;
+    float: left;
+    line-height: 1;
+    margin: 0.3rem 0.8rem 0 0;
+    color: var(--red);
+    font-weight: 600;
+  }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 3rem;
+    border-top: 1px solid rgba(244, 237, 226, 0.12);
+    border-left: 1px solid rgba(244, 237, 226, 0.12);
+  }
+
+  .stat-item {
+    padding: 1.8rem 1.5rem;
+    border-right: 1px solid rgba(244, 237, 226, 0.12);
+    border-bottom: 1px solid rgba(244, 237, 226, 0.12);
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+
+  .stat-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--red);
+    transition: width 0.4s ease;
+  }
+
+  .stat-item:hover { background: rgba(200,25,26,0.05); }
+  .stat-item:hover::after { width: 100%; }
+
+  .stat-number {
+    font-family: var(--display);
+    font-size: 2.8rem;
+    font-weight: 500;
+    color: var(--red);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+    letter-spacing: -0.02em;
+  }
+
+  .stat-label {
+    font-family: var(--serif);
+    font-size: 0.78rem;
+    color: var(--paper-dim);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
+  .philosophy-card {
+    background: var(--black);
+    border: 1px solid rgba(200, 25, 26, 0.25);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .philosophy-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 10% 90%, rgba(200,25,26,0.12) 0%, transparent 55%),
+      radial-gradient(circle at 90% 10%, rgba(200,25,26,0.06) 0%, transparent 40%);
+    pointer-events: none;
+  }
+
+  .philosophy-top {
+    padding: 3rem 3rem 2.5rem;
+    border-bottom: 1px solid rgba(200, 25, 26, 0.15);
+    position: relative;
+  }
+
+  .philosophy-brush {
+    position: absolute;
+    top: 0; right: 0;
+    width: 55%; height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 2rem;
+    overflow: hidden;
+  }
+
+  .philosophy-brush-kanji {
+    font-family: var(--serif);
+    font-size: 10rem;
+    font-weight: 700;
+    color: var(--red);
+    opacity: 0.08;
+    line-height: 1;
+    user-select: none;
+    transition: opacity 0.5s ease;
+  }
+
+  .philosophy-card:hover .philosophy-brush-kanji { opacity: 0.15; }
+
+  .philosophy-kanji {
+    font-family: var(--serif);
+    font-size: 3.5rem;
+    color: var(--red);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.15em;
+    position: relative;
+    z-index: 2;
+  }
+
+  .philosophy-reading {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--paper-dim);
+    font-size: 0.85rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    margin-bottom: 0;
+    position: relative;
+    z-index: 2;
+  }
+
+  .philosophy-def {
+    padding: 2.5rem 3rem;
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    line-height: 1.75;
+    color: var(--paper);
+    font-style: italic;
+    position: relative;
+    z-index: 2;
+  }
+
+  .philosophy-def::before,
+  .philosophy-def::after {
+    color: var(--red);
+    font-weight: 700;
+    margin: 0 0.2em;
+  }
+  .philosophy-def::before { content: '「'; }
+  .philosophy-def::after { content: '」'; }
+
+  .philosophy-bottom {
+    padding: 0 3rem 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .philosophy-line {
+    width: 40px; height: 1px;
+    background: var(--red);
+    flex-shrink: 0;
+  }
+
+  .philosophy-caption {
+    font-family: var(--serif);
+    font-size: 0.78rem;
+    color: var(--mute);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+  }
+
+  /* ========== SERVIÇOS ========== */
+  .services {
+    background: var(--black);
+  }
+
+  .services-header {
+    max-width: 1200px;
+    margin: 0 auto 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .services-header p {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--paper-dim);
+    max-width: 400px;
+    font-size: 1.1rem;
+  }
+
+  .services-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .service-card {
+    background: var(--ink);
+    border: 1px solid rgba(244, 237, 226, 0.08);
+    padding: 3.5rem;
+    position: relative;
+    transition: all 0.4s ease;
+    overflow: hidden;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--red);
+    transition: width 0.4s ease;
+  }
+
+  .service-card:hover {
+    border-color: rgba(200, 25, 26, 0.4);
+    transform: translateY(-4px);
+  }
+
+  .service-card:hover::before { width: 100%; }
+
+  .service-number {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--red);
+    letter-spacing: 0.3em;
+    margin-bottom: 2rem;
+  }
+
+  .service-title {
+    font-family: var(--display);
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .service-kanji {
+    font-family: var(--serif);
+    color: var(--red);
+    font-size: 2rem;
+    margin-left: 0.5rem;
+    font-weight: 600;
+  }
+
+  .service-desc {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--paper-dim);
+    margin-bottom: 2rem;
+  }
+
+  .service-features {
+    list-style: none;
+    border-top: 1px solid rgba(244, 237, 226, 0.1);
+    padding-top: 1.5rem;
+  }
+
+  .service-features li {
+    padding: 0.6rem 0;
+    font-size: 0.9rem;
+    color: var(--paper);
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .service-features li::before {
+    content: '—';
+    color: var(--red);
+    font-weight: 700;
+  }
+
+  /* ========== PORTFÓLIO ========== */
+  .portfolio {
+    background: var(--ink);
+    border-top: 1px solid rgba(200, 25, 26, 0.15);
+  }
+
+  .portfolio-header {
+    max-width: 1400px;
+    margin: 0 auto 4rem;
+  }
+
+  .portfolio-filters {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+
+  .filter-btn {
+    background: transparent;
+    border: 1px solid rgba(244, 237, 226, 0.2);
+    color: var(--paper-dim);
+    padding: 0.6rem 1.4rem;
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .filter-btn:hover, .filter-btn.active {
+    border-color: var(--red);
+    color: var(--paper);
+    background: rgba(200, 25, 26, 0.1);
+  }
+
+  .portfolio-grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 280px;
+    gap: 1rem;
+  }
+
+  .portfolio-item {
+    position: relative;
+    overflow: hidden;
+    background: var(--black);
+    border: 1px solid rgba(244, 237, 226, 0.08);
+    cursor: pointer;
+    transition: all 0.4s ease;
+  }
+
+  .portfolio-item.tall { grid-row: span 2; }
+  .portfolio-item.wide { grid-column: span 2; }
+
+  .portfolio-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+      linear-gradient(135deg, rgba(200, 25, 26, 0.15) 0%, transparent 50%, rgba(200, 25, 26, 0.1) 100%),
+      repeating-linear-gradient(45deg, rgba(244, 237, 226, 0.02) 0px, rgba(244, 237, 226, 0.02) 2px, transparent 2px, transparent 8px);
+    position: relative;
+  }
+
+  .portfolio-placeholder svg {
+    width: 50%;
+    height: 50%;
+    opacity: 0.3;
+    transition: all 0.4s ease;
+  }
+
+  .portfolio-item:hover .portfolio-placeholder svg {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+
+  .portfolio-item:hover {
+    border-color: var(--red);
+    transform: scale(1.01);
+  }
+
+  .portfolio-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(10, 7, 6, 0.95) 0%, rgba(10, 7, 6, 0.3) 60%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+
+  .portfolio-style {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.8rem;
+    color: var(--red);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  .portfolio-name {
+    font-family: var(--display);
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+
+  .portfolio-note {
+    max-width: 1400px;
+    margin: 3rem auto 0;
+    text-align: center;
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--mute);
+    font-size: 0.95rem;
+  }
+
+  /* ========== ARTISTAS ========== */
+  .artists {
+    background: var(--black);
+    overflow: hidden;
+  }
+
+  .artists-header {
+    max-width: 1200px;
+    margin: 0 auto 5rem;
+  }
+
+  .artists-grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  .artist-card {
+    position: relative;
+    transition: all 0.4s ease;
+  }
+
+  .artist-image {
+    aspect-ratio: 3 / 4;
+    background:
+      linear-gradient(135deg, rgba(200, 25, 26, 0.2) 0%, rgba(10, 7, 6, 0.9) 100%),
+      repeating-linear-gradient(0deg, rgba(244, 237, 226, 0.03) 0px, rgba(244, 237, 226, 0.03) 1px, transparent 1px, transparent 4px);
+    border: 1px solid rgba(244, 237, 226, 0.1);
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+  }
+
+  .artist-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, var(--black) 0%, transparent 50%);
+  }
+
+  .artist-silhouette {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 85%;
+    opacity: 0.4;
+  }
+
+  .artist-card:hover .artist-image {
+    border-color: var(--red);
+  }
+
+  .artist-card:hover .artist-silhouette {
+    opacity: 0.6;
+  }
+
+  .artist-number {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--red);
+    letter-spacing: 0.2em;
+    z-index: 2;
+  }
+
+  .artist-name {
+    font-family: var(--display);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+    letter-spacing: -0.01em;
+  }
+
+  .artist-role {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--red);
+    font-size: 0.9rem;
+    letter-spacing: 0.15em;
+    margin-bottom: 1rem;
+  }
+
+  .artist-styles {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    color: var(--paper-dim);
+    letter-spacing: 0.05em;
+    line-height: 1.6;
+  }
+
+  /* ========== CTA BANNER ========== */
+  .cta-banner {
+    padding: 10rem 3rem;
+    text-align: center;
+    background: var(--ink);
+    border-top: 1px solid rgba(200, 25, 26, 0.2);
+    border-bottom: 1px solid rgba(200, 25, 26, 0.2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-banner::before {
+    content: '改善';
+    position: absolute;
+    font-family: var(--serif);
+    font-size: clamp(15rem, 30vw, 30rem);
+    color: var(--red);
+    opacity: 0.05;
+    font-weight: 700;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    letter-spacing: -0.05em;
+    line-height: 1;
+  }
+
+  .cta-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .cta-title {
+    font-family: var(--display);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 500;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    letter-spacing: -0.02em;
+  }
+
+  .cta-title em {
+    font-style: italic;
+    color: var(--red);
+  }
+
+  .cta-sub {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--paper-dim);
+    margin-bottom: 3rem;
+  }
+
+  /* ========== CONTATO / LOCALIZAÇÃO ========== */
+  .contact {
+    background: var(--black);
+  }
+
+  .contact-grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+    align-items: stretch;
+  }
+
+  .contact-info {
+    padding: 1rem 0;
+  }
+
+  .contact-block {
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(244, 237, 226, 0.1);
+  }
+
+  .contact-block:last-child {
+    border-bottom: none;
+  }
+
+  .contact-label {
+    font-family: var(--serif);
+    font-size: 0.75rem;
+    letter-spacing: 0.4em;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .contact-value {
+    font-family: var(--display);
+    font-size: 1.8rem;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+
+  .contact-value a {
+    color: var(--paper);
+    text-decoration: none;
+    transition: color 0.3s;
+    border-bottom: 1px solid transparent;
+  }
+
+  .contact-value a:hover {
+    color: var(--red-glow);
+    border-bottom-color: var(--red);
+  }
+
+  .contact-extra {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--paper-dim);
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+  }
+
+  .map-frame {
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+    border: 1px solid rgba(200, 25, 26, 0.25);
+    filter: grayscale(1) brightness(0.7) contrast(1.2);
+    transition: filter 0.5s ease;
+  }
+
+  .map-frame:hover {
+    filter: grayscale(0) brightness(0.9) contrast(1);
+  }
+
+  /* ========== FOOTER ========== */
+  footer {
+    background: var(--ink);
+    padding: 4rem 3rem 2rem;
+    border-top: 1px solid rgba(200, 25, 26, 0.2);
+    position: relative;
+    z-index: 5;
+  }
+
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 3rem;
+  }
+
+  .footer-brand {
+    font-family: var(--display);
+    font-size: 2rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+
+  .footer-brand span { color: var(--red); }
+
+  .footer-tagline {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--paper-dim);
+    max-width: 300px;
+    line-height: 1.6;
+  }
+
+  .footer-col h4 {
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+
+  .footer-col ul {
+    list-style: none;
+  }
+
+  .footer-col li {
+    margin-bottom: 0.8rem;
+  }
+
+  .footer-col a {
+    color: var(--paper-dim);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+  }
+
+  .footer-col a:hover { color: var(--red-glow); }
+
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(244, 237, 226, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.85rem;
+    color: var(--mute);
+    font-family: var(--serif);
+    font-style: italic;
+  }
+
+  /* ========== WHATSAPP FLOAT ========== */
+  .whatsapp-float {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 60px;
+    height: 60px;
+    background: var(--red);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(200, 25, 26, 0.4);
+  }
+
+  .whatsapp-float::before {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: 2px solid var(--red);
+    opacity: 0;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.4); opacity: 0; }
+  }
+
+  .whatsapp-float:hover {
+    background: var(--red-deep);
+    transform: scale(1.08);
+  }
+
+  .whatsapp-float svg {
+    width: 30px;
+    height: 30px;
+    fill: var(--paper);
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 1.5rem; }
+    nav.scrolled { padding: 0.8rem 1.5rem; }
+    .nav-links { display: none; }
+    .nav-toggle { display: block; }
+
+    .nav-links.open {
+      display: flex;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(10, 7, 6, 0.98);
+      backdrop-filter: blur(12px);
+      flex-direction: column;
+      padding: 2rem;
+      gap: 1.5rem;
+      border-bottom: 1px solid rgba(200, 25, 26, 0.2);
+    }
+
+    section { padding: 5rem 1.5rem; }
+
+    .about-grid,
+    .services-grid,
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .portfolio-grid {
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 220px;
+    }
+
+    .artists-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .footer-content {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .cta-banner { padding: 6rem 1.5rem; }
+
+    .hero { padding: 0 1.5rem; }
+  }
+
+  @media (max-width: 500px) {
+    .portfolio-grid {
+      grid-template-columns: 1fr;
+    }
+    .portfolio-item.wide { grid-column: span 1; }
+    .artists-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .artist-name { font-size: 1.3rem; }
+    .service-card { padding: 2rem; }
+    .service-title { font-size: 2rem; }
+    .philosophy-card { padding: 2rem; }
+
+    .whatsapp-float {
+      width: 52px;
+      height: 52px;
+      bottom: 1.2rem;
+      right: 1.2rem;
+    }
+    .whatsapp-float svg { width: 26px; height: 26px; }
+  }
+
+  /* Scroll animations */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-brand">Kaizen<span>.</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#portfolio">Portfólio</a></li>
+    <li><a href="#artistas">Artistas</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-kanji">改善</div>
+  <div class="hero-enso"></div>
+  <div class="hero-content">
+    <div class="hero-overline">Arujá · São Paulo · est. MMXIX</div>
+    <h1 class="hero-title">
+      A arte da<br>
+      tinta <em>eterna</em><span class="kanji-inline">.</span>
+    </h1>
+    <p class="hero-sub">
+      Oficina de tatuagem guiada pela filosofia japonesa do Kaizen — a busca contínua pela excelência em cada traço.
+    </p>
+    <div class="hero-ctas">
+      <a href="https://wa.me/5511986222211?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20tatuagem." target="_blank" class="btn btn-primary">
+        <span>Agendar no WhatsApp</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#portfolio" class="btn btn-ghost">
+        Ver portfólio
+      </a>
+    </div>
+  </div>
+  <div class="scroll-hint">Role para descobrir</div>
+</section>
+
+<!-- SOBRE -->
+<section class="about" id="sobre">
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <div class="section-label">Nossa essência</div>
+      <h2 class="section-title">Onde a paciência <em>vira arte</em>.</h2>
+      <p>Nascemos em Arujá com uma ideia simples e obsessiva: tratar cada tatuagem como uma obra em evolução. Não existe projeto pequeno, apressado ou genérico. Existe tempo, técnica e a disciplina de fazer sempre melhor do que ontem.</p>
+      <p>Na Oficina Kaizen, você encontra um estúdio limpo, acolhedor e conduzido por artistas que vivem da tinta. Tatuagem e piercing feitos com respeito pela sua pele e pela sua história.</p>
+      <div class="about-stats">
+        <div class="stat-item">
+          <div class="stat-number">4<sup>+</sup></div>
+          <div class="stat-label">Artistas residentes</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">∞</div>
+          <div class="stat-label">Estilos disponíveis</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">改善</div>
+          <div class="stat-label">Nossa filosofia</div>
+        </div>
+      </div>
+    </div>
+    <div class="philosophy-card reveal">
+      <div class="philosophy-top">
+        <div class="philosophy-brush">
+          <span class="philosophy-brush-kanji">改善</span>
+        </div>
+        <div class="philosophy-kanji">改善</div>
+        <div class="philosophy-reading">Kai · Zen · Kaizen</div>
+      </div>
+      <p class="philosophy-def">Melhoria contínua. A arte de nunca se contentar, de refinar cada detalhe até que o traço pertença ao corpo como se sempre tivesse estado ali.</p>
+      <div class="philosophy-bottom">
+        <div class="philosophy-line"></div>
+        <span class="philosophy-caption">Filosofia japonesa · Nossa fundação</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section class="services" id="servicos">
+  <div class="services-header reveal">
+    <div>
+      <div class="section-label">O que fazemos</div>
+      <h2 class="section-title">Serviços <em>da casa</em>.</h2>
+    </div>
+    <p>Dois ofícios, a mesma filosofia: tempo, técnica e cuidado. Sem pressa, sem atalhos.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-number">I · 刺青</div>
+      <h3 class="service-title">Tatuagem<span class="service-kanji">墨</span></h3>
+      <p class="service-desc">Projetos autorais e adaptações, do fine line ao oriental tradicional. Cada artista com sua identidade, todos com a mesma obsessão pelo acabamento.</p>
+      <ul class="service-features">
+        <li>Oriental · Black & Grey · Realismo</li>
+        <li>Fine Line · Old School · Blackwork</li>
+        <li>Coberturas e restaurações</li>
+        <li>Orçamento personalizado</li>
+      </ul>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-number">II · 穿孔</div>
+      <h3 class="service-title">Piercing<span class="service-kanji">環</span></h3>
+      <p class="service-desc">Aplicação com material esterilizado, joias de qualidade e orientação completa de cicatrização. Porque perfuração também é arte — e exige precisão.</p>
+      <ul class="service-features">
+        <li>Lóbulo, cartilagem e helix</li>
+        <li>Septo, nariz e tragus</li>
+        <li>Joias em titânio cirúrgico</li>
+        <li>Acompanhamento pós-procedimento</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFÓLIO -->
+<section class="portfolio" id="portfolio">
+  <div class="portfolio-header reveal">
+    <div class="section-label">Galeria</div>
+    <h2 class="section-title">Traços que <em>contam história</em>.</h2>
+    <div class="portfolio-filters">
+      <button class="filter-btn active">Todos</button>
+      <button class="filter-btn">Oriental</button>
+      <button class="filter-btn">Black & Grey</button>
+      <button class="filter-btn">Fine Line</button>
+      <button class="filter-btn">Old School</button>
+      <button class="filter-btn">Realismo</button>
+    </div>
+  </div>
+  <div class="portfolio-grid">
+    <div class="portfolio-item tall reveal">
+      <div class="portfolio-placeholder">
+        <svg viewBox="0 0 100 100" fill="none" stroke="#c8191a" stroke-width="0.5"><circle cx="50" cy="50" r="35"/><path d="M30 55 Q50 30 70 55 T30 55" stroke-width="1"/><circle cx="50" cy="50" r="8" fill="#c8191a" opacity="0.3"/></svg>
+      </div>
+      <div class="portfolio-overlay">
+        <div class="portfolio-style">Oriental</div>
+        <div class="portfolio-name">Dragão nas costas</div>
+      </div>
+    </div>
+    <div class="portfolio-item reveal">
+      <div class="portfolio-placeholder">
+        <svg viewBox="0 0 100 100" fill="none" stroke="#c8191a" stroke-width="0.8"><path d="M20 50 L50 20 L80 50 L50 80 Z"/><circle cx="50" cy="50" r="12"/></svg>
+      </div>
+      <div class="portfolio-overlay">
+        <div class="portfolio-style">Fine Line</div>
+        <div class="portfolio-name">Geométrica</div>
+      </div>
+    </div>
+    <div class="portfolio-item reveal">
+      <div class="portfolio-placeholder">
+        <svg viewBox="0 0 100 100" fill="none" stroke="#c8191a" stroke-width="0.6"><path d="M50 15 Q20 50 50 85 Q80 50 50 15Z"/><path d="M50 30 Q35 50 50 70" stroke-width="1"/></svg>
+      </div>
+      <div class="portfolio-overlay">
+        <div class="portfolio-style">Black & Grey</div>
+        <div class="portfolio-name">Rosa no antebraço</div>
+      </div>
+    </div>
+    <div class="portfolio-item wide reveal">
+      <div class="portfolio-placeholder">
+        <svg viewBox="0 0 200 100" fill="none" stroke="#c8191a" stroke-width="0.5"><path d="M20 50 Q60 20 100 50 T180 50"/><path d="M20 60 Q60 30 100 60 T180 60" opacity="0.5"/><circle cx="100" cy="50" r="6" fill="#c8191a" opacity="0.3"/></svg>
+      </div>
+      <div class="portfolio-overlay">
+        <div class="portfolio-style">Oriental</div>
+        <div class="portfolio-name">Koi no braço completo</div>
+      </div>
+    </div>
+    <div class="portfolio-item reveal">
+      <div class="portfolio-placeholder">
+        <svg viewBox="0 0 100 100" fill="none" stroke="#c8191a" stroke-width="0.8"><circle cx="50" cy="50" r="30"/><circle cx="50" cy="50" r="20"/><circle cx="50" cy="50" r="10"/></svg>
+      </div>
+      <div class="portfolio-overlay">
+        <div class="portfolio-style">Blackwork</div>
+        <div class="portfolio-name">Mandala</div>
+      </div>
+    </div>
+    <div class="portfolio-item tall reveal">
+      <div class="portfolio-placeholder">
+        <svg viewBox="0 0 100 100" fill="none" stroke="#c8191a" stroke-width="0.6"><path d="M50 10 L55 40 L85 45 L60 55 L70 85 L50 65 L30 85 L40 55 L15 45 L45 40 Z"/></svg>
+      </div>
+      <div class="portfolio-overlay">
+        <div class="portfolio-style">Old School</div>
+        <div class="portfolio-name">Estrela náutica</div>
+      </div>
+    </div>
+    <div class="portfolio-item reveal">
+      <div class="portfolio-placeholder">
+        <svg viewBox="0 0 100 100" fill="none" stroke="#c8191a" stroke-width="0.5"><path d="M30 70 Q50 20 70 70" stroke-width="1"/><path d="M35 70 Q50 35 65 70"/><path d="M40 70 Q50 50 60 70" opacity="0.6"/></svg>
+      </div>
+      <div class="portfolio-overlay">
+        <div class="portfolio-style">Realismo</div>
+        <div class="portfolio-name">Montanha</div>
+      </div>
+    </div>
+    <div class="portfolio-item reveal">
+      <div class="portfolio-placeholder">
+        <svg viewBox="0 0 100 100" fill="none" stroke="#c8191a" stroke-width="0.6"><path d="M20 50 Q50 20 80 50"/><path d="M20 50 Q50 80 80 50"/><circle cx="50" cy="50" r="4" fill="#c8191a"/></svg>
+      </div>
+      <div class="portfolio-overlay">
+        <div class="portfolio-style">Fine Line</div>
+        <div class="portfolio-name">Olho</div>
+      </div>
+    </div>
+    <div class="portfolio-item wide reveal">
+      <div class="portfolio-placeholder">
+        <svg viewBox="0 0 200 100" fill="none" stroke="#c8191a" stroke-width="0.6"><path d="M10 90 Q50 10 100 50 T190 20" stroke-width="1"/><path d="M10 95 Q50 20 100 55 T190 30" opacity="0.4"/></svg>
+      </div>
+      <div class="portfolio-overlay">
+        <div class="portfolio-style">Oriental</div>
+        <div class="portfolio-name">Ondas japonesas</div>
+      </div>
+    </div>
+  </div>
+  <p class="portfolio-note">* imagens ilustrativas — o portfólio completo e atualizado está no <a href="https://www.instagram.com/oficina_kaizen.tattoo/" target="_blank" style="color: var(--red);">Instagram</a>.</p>
+</section>
+
+<!-- ARTISTAS -->
+<section class="artists" id="artistas">
+  <div class="artists-header reveal">
+    <div class="section-label">Nossa equipe</div>
+    <h2 class="section-title">Os artistas <em>da casa</em>.</h2>
+    <p style="font-family: var(--serif); font-style: italic; color: var(--paper-dim); max-width: 600px; font-size: 1.1rem;">
+      Cada um com seu estilo, todos com a mesma obsessão pelo detalhe. Escolha o traço que fala com você.
+    </p>
+  </div>
+  <div class="artists-grid">
+    <div class="artist-card reveal">
+      <div class="artist-image">
+        <span class="artist-number">/ 01</span>
+        <svg class="artist-silhouette" viewBox="0 0 100 130" fill="#c8191a"><ellipse cx="50" cy="30" rx="18" ry="20"/><path d="M20 130 Q20 70 50 65 Q80 70 80 130 Z"/></svg>
+      </div>
+      <h3 class="artist-name">Artista 01</h3>
+      <div class="artist-role">Tatuador · Fundador</div>
+      <p class="artist-styles">Oriental · Black & Grey · Projetos autorais</p>
+    </div>
+    <div class="artist-card reveal">
+      <div class="artist-image">
+        <span class="artist-number">/ 02</span>
+        <svg class="artist-silhouette" viewBox="0 0 100 130" fill="#c8191a"><ellipse cx="50" cy="30" rx="18" ry="20"/><path d="M20 130 Q20 70 50 65 Q80 70 80 130 Z"/></svg>
+      </div>
+      <h3 class="artist-name">Artista 02</h3>
+      <div class="artist-role">Tatuador</div>
+      <p class="artist-styles">Fine Line · Geométrico · Minimalista</p>
+    </div>
+    <div class="artist-card reveal">
+      <div class="artist-image">
+        <span class="artist-number">/ 03</span>
+        <svg class="artist-silhouette" viewBox="0 0 100 130" fill="#c8191a"><ellipse cx="50" cy="30" rx="18" ry="20"/><path d="M20 130 Q20 70 50 65 Q80 70 80 130 Z"/></svg>
+      </div>
+      <h3 class="artist-name">Artista 03</h3>
+      <div class="artist-role">Tatuadora</div>
+      <p class="artist-styles">Realismo · Retratos · Black & Grey</p>
+    </div>
+    <div class="artist-card reveal">
+      <div class="artist-image">
+        <span class="artist-number">/ 04</span>
+        <svg class="artist-silhouette" viewBox="0 0 100 130" fill="#c8191a"><ellipse cx="50" cy="30" rx="18" ry="20"/><path d="M20 130 Q20 70 50 65 Q80 70 80 130 Z"/></svg>
+      </div>
+      <h3 class="artist-name">Artista 04</h3>
+      <div class="artist-role">Tatuador · Piercer</div>
+      <p class="artist-styles">Old School · Neo-Traditional · Piercing</p>
+    </div>
+  </div>
+  <p class="portfolio-note" style="margin-top: 3rem;">* nomes e bios serão preenchidos com as informações reais dos artistas.</p>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="cta-content">
+    <h2 class="cta-title">Sua próxima tatuagem<br>começa com uma <em>conversa</em>.</h2>
+    <p class="cta-sub">Mande sua ideia, referência ou esboço. Retornamos com orçamento e disponibilidade.</p>
+    <a href="https://wa.me/5511986222211?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20tatuagem." target="_blank" class="btn btn-primary">
+      <span>Falar no WhatsApp agora</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section class="contact" id="contato">
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <div class="section-label">Nos encontre</div>
+      <h2 class="section-title">Venha <em>tomar um café</em>.</h2>
+
+      <div class="contact-block">
+        <div class="contact-label">WhatsApp</div>
+        <div class="contact-value">
+          <a href="https://wa.me/5511986222211" target="_blank">(11) 98622-2211</a>
+        </div>
+        <p class="contact-extra">Respondemos de terça a sábado, 10h às 20h.</p>
+      </div>
+
+      <div class="contact-block">
+        <div class="contact-label">Instagram</div>
+        <div class="contact-value">
+          <a href="https://www.instagram.com/oficina_kaizen.tattoo/" target="_blank">@oficina_kaizen.tattoo</a>
+        </div>
+        <p class="contact-extra">Portfólio atualizado e bastidores do estúdio.</p>
+      </div>
+
+      <div class="contact-block">
+        <div class="contact-label">Endereço</div>
+        <div class="contact-value">Arujá · São Paulo</div>
+        <p class="contact-extra">Atendimento apenas com horário marcado.</p>
+      </div>
+    </div>
+    <div class="reveal">
+      <iframe
+        class="map-frame"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14657.746!2d-46.3129241!3d-23.3874308!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce87e28c084b21%3A0xace46d48a0ddf345!2sAruj%C3%A1%2C%20SP!5e0!3m2!1spt-BR!2sbr!4v1700000000000"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-content">
+    <div>
+      <div class="footer-brand">Kaizen<span>.</span></div>
+      <p class="footer-tagline">Oficina de tatuagem em Arujá. A busca contínua pela tinta perfeita — 改善.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navegar</h4>
+      <ul>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#portfolio">Portfólio</a></li>
+        <li><a href="#artistas">Artistas</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contato</h4>
+      <ul>
+        <li><a href="https://wa.me/5511986222211" target="_blank">WhatsApp</a></li>
+        <li><a href="https://www.instagram.com/oficina_kaizen.tattoo/" target="_blank">Instagram</a></li>
+        <li><a href="#contato">Localização</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Oficina Kaizen Tattoo · Arujá, SP</p>
+    <p>Feito com tinta, paciência e 改善.</p>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/5511986222211?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20tatuagem." target="_blank" class="whatsapp-float" aria-label="Agendar pelo WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.693.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<script>
+  // Nav scroll effect
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+
+  // Mobile menu toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+
+  // Close menu on click (mobile)
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Portfolio filter (visual only for now — all items shown)
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
